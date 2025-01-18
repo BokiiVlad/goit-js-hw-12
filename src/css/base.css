@@ -17,8 +17,7 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
+  list-style-type: none;
   min-width: 100vw;
   min-height: 100vh;
   margin: 0;
