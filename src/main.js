@@ -12,16 +12,19 @@ import { createImg } from "./js/render-function";
 const formField = document.querySelector(".form");
 const subButton = document.querySelector(".but-style");
 const imageField = document.querySelector(".gallery");
+const loader = document.querySelector(".loader-container")
 
 const galleryOpen = new SimpleLightbox('.gallery a', {
     captionsData: 'alt', captionDelay: 250, captions: true,
 });
-
+loader.style.display = 'none';
 subButton.addEventListener("click", (event) => {
+    imageField.innerHTML = "";
+    loader.style.display = 'flex';
     event.preventDefault()
-    //  Значення інпута
+
     const inputValue = formField.elements.search.value.trim();
-    // Перевірка чи інпут не порожній
+
     if (inputValue === "") {
         iziToast.warning({
             title: 'Warning',
@@ -49,5 +52,9 @@ subButton.addEventListener("click", (event) => {
             error => {
                 console.log(error.message);
             }
+        )
+        .finally(() => {
+            loader.style.display = 'none';
+        }
         )
 });
