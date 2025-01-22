@@ -5,7 +5,7 @@ export function pixApi(inputValue) {
         q: inputValue,
         image_type: "photo",
         orientation: "horizontal",
-        orientation: "true",
+        safesearch: "true",
     });
 
     return fetch(`https://pixabay.com/api/?${searchParams}`)

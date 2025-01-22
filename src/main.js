@@ -26,6 +26,7 @@ subButton.addEventListener("click", (event) => {
     const inputValue = formField.elements.search.value.trim();
 
     if (inputValue === "") {
+        loader.style.display = 'none';
         iziToast.warning({
             title: 'Warning',
             message: 'Enter correct data.'
