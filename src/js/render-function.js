@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export function createImg(responseObj) {
   const { largeImageURL, webformatURL, tags, likes, views, comments, downloads } = responseObj;
 
