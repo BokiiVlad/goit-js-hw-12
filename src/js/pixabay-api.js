@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function pixApi(inputValue, currentPage) {
     const axiosOptions = {
-        method: {
+        params: {
             per_page: 15,
             page: currentPage,
             key: "48300565-6dad9db0463f535246b89c980",
@@ -13,5 +13,5 @@ export async function pixApi(inputValue, currentPage) {
         },
     };
 
-    return axios.get(`https://pixabay.com/api/?${searchParams}`, axiosOptions)
+    return axios.get(`https://pixabay.com/api/`, axiosOptions)
 };
