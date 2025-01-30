@@ -96,7 +96,8 @@ async function addPicture() {
         galleryOpen.refresh();
 
         // Перевіряємо, чи досягли останньої сторінки
-        if (currentPage * 15 >= addResponse.data.totalHits) {
+        const totalPages = Math.ceil(addResponse.data.totalHits / 15);
+        if (currentPage >= totalPages) {
             iziToast.error({
                 title: 'Error',
                 message: "We're sorry, but you've reached the end of search results."
@@ -109,10 +110,6 @@ async function addPicture() {
         console.log(error);
     } finally {
         loader.style.display = 'none';
-        // Показуємо кнопку лише якщо не досягнуто останньої сторінки
-        if (currentPage < Math.ceil(addResponse.data.totalHits / 15)) {
-            butMore.classList.remove("is-hidden");
-        }
     }
 }
 
