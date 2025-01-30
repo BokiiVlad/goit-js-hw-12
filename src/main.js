@@ -93,6 +93,14 @@ async function addPicture() {
         const imageArrayAdd = addResponse.data.hits.map(el => createImg(el)).join("");
         // Додаємо розмітку в кінець всіх елементів
         imageField.insertAdjacentHTML("beforeend", imageArrayAdd);
+        // Отримуємо висоту однієї карточки
+        const cardHeight = document.querySelector(".gallery-item").getBoundingClientRect().height;
+
+        // Прокрутка вниз на дві висоти карточки
+        window.scrollBy({
+            top: cardHeight * 2,
+            behavior: "smooth"
+        });
         galleryOpen.refresh();
 
         // Перевіряємо, чи досягли останньої сторінки
@@ -106,10 +114,12 @@ async function addPicture() {
             butMore.removeEventListener("click", addPicture);
             return;
         }
+        butMore.classList.remove("is-hidden");
     } catch (error) {
         console.log(error);
     } finally {
         loader.style.display = 'none';
+
     }
 }
 
