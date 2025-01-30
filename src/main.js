@@ -29,12 +29,11 @@ let inputValue = "";
 
 const imageGallery = async (event) => {
     try {
-        butMore.classList.add("is-hidden");
         imageField.innerHTML = "";
         loader.style.display = 'flex';
         event.preventDefault();
 
-        // Значення інпута
+        // Оновлюємо значення інпута
         inputValue = formField.elements.search.value.trim();
 
         // Перевірка значення інпута
@@ -79,6 +78,7 @@ const imageGallery = async (event) => {
     } catch (error) {
         console.log(error);
     } finally {
+        // Ховаю кнопку "Load more"
         loader.style.display = 'none';
     }
 };
@@ -91,7 +91,7 @@ async function addPicture() {
 
         const addResponse = await pixApi(inputValue, currentPage);
         const imageArrayAdd = addResponse.data.hits.map(el => createImg(el)).join("");
-
+        // Додаємо розмітку в кінець всіх елементів
         imageField.insertAdjacentHTML("beforeend", imageArrayAdd);
         galleryOpen.refresh();
 
@@ -110,7 +110,10 @@ async function addPicture() {
         console.log(error);
     } finally {
         loader.style.display = 'none';
-        butMore.classList.remove("is-hidden");
+        // Показуємо кнопку лише якщо не досягнуто останньої сторінки
+        if (currentPage < Math.ceil(addResponse.data.totalHits / 15)) {
+            butMore.classList.remove("is-hidden");
+        }
     }
 }
 
