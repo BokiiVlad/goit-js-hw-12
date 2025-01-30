@@ -96,8 +96,7 @@ async function addPicture() {
         galleryOpen.refresh();
 
         // Перевіряємо, чи досягли останньої сторінки
-        const totalPages = Math.ceil(addResponse.data.totalHits / 15);
-        if (currentPage >= totalPages) {
+        if (currentPage * 15 >= addResponse.data.totalHits) {
             iziToast.error({
                 title: 'Error',
                 message: "We're sorry, but you've reached the end of search results."
